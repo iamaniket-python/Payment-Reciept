@@ -8,19 +8,25 @@
   <link rel="icon" type="image/x-icon" href="1.jpg">
 </head>
 <body>
+ 
+<!-- Mobile Tabs -->
+<div class="tabs">
+  <button class="tab-btn active" onclick="showTab('form')">✏️ Form</button>
+  <button class="tab-btn" onclick="showTab('preview')">📄 Preview</button>
+</div>
+ 
 <div class="app">
-
   <!-- LEFT: FORM -->
-  <div class="panel">
-    <div class="panel-head">&#9998; Form Bharein</div>
+  <div class="panel" id="panel-form">
+    <div class="panel-head">✏️ Form Bharein</div>
     <div class="form-body">
-
+ 
       <div class="slabel">Receipt Info</div>
       <div class="row2">
         <div class="fg"><label>Rec. No.</label><input id="recno" type="text" placeholder="jaise 17" oninput="update()"></div>
         <div class="fg"><label>Date</label><input id="rdate" type="date" oninput="update()"></div>
       </div>
-
+ 
       <div class="slabel">Student Details</div>
       <div class="fg"><label>Student Name</label><input id="sname" type="text" placeholder="Poora naam likhein" oninput="update()"></div>
       <div class="fg"><label>Father's Name</label><input id="fname" type="text" placeholder="Pita ka naam" oninput="update()"></div>
@@ -28,7 +34,7 @@
         <div class="fg"><label>Adm. No.</label><input id="admno" type="text" placeholder="jaise 05" oninput="update()"></div>
         <div class="fg"><label>Mode</label>
           <select id="mode" onchange="update()">
-            <option value="">-- Select--</option>
+            <option value="">-- Select --</option>
             <option>Cash</option><option>Cheque</option><option>Online</option><option>DD</option>
           </select>
         </div>
@@ -50,15 +56,25 @@
         </div>
         <div class="fg"><label>Roll No.</label><input id="roll" type="text" placeholder="jaise 2" oninput="update()"></div>
       </div>
-      <div class="fg"><label>Month</label>
-        <select id="month" onchange="update()">
-          <option value="">-- Mahina Chunein --</option>
-          <option>January</option><option>February</option><option>March</option><option>April</option>
-          <option>May</option><option>June</option><option>July</option><option>August</option>
-          <option>September</option><option>October</option><option>November</option><option>December</option>
-        </select>
+ 
+      <!-- MULTI-MONTH -->
+      <div class="slabel">Month(s) — Multiple Select Kar Sakte Hain</div>
+      <div class="month-grid" id="monthGrid">
+        <div class="m-chip" data-month="January" onclick="toggleMonth(this)">Jan</div>
+        <div class="m-chip" data-month="February" onclick="toggleMonth(this)">Feb</div>
+        <div class="m-chip" data-month="March" onclick="toggleMonth(this)">Mar</div>
+        <div class="m-chip" data-month="April" onclick="toggleMonth(this)">Apr</div>
+        <div class="m-chip" data-month="May" onclick="toggleMonth(this)">May</div>
+        <div class="m-chip" data-month="June" onclick="toggleMonth(this)">Jun</div>
+        <div class="m-chip" data-month="July" onclick="toggleMonth(this)">Jul</div>
+        <div class="m-chip" data-month="August" onclick="toggleMonth(this)">Aug</div>
+        <div class="m-chip" data-month="September" onclick="toggleMonth(this)">Sep</div>
+        <div class="m-chip" data-month="October" onclick="toggleMonth(this)">Oct</div>
+        <div class="m-chip" data-month="November" onclick="toggleMonth(this)">Nov</div>
+        <div class="m-chip" data-month="December" onclick="toggleMonth(this)">Dec</div>
       </div>
-
+      <div class="month-hint" id="monthHint">Koi month nahi chuna</div>
+ 
       <div class="slabel">Fee Details (Rs.)</div>
       <div class="fee-row"><span>Tuition Fee</span><input id="fee" type="number" placeholder="0" oninput="calc()"></div>
       <div class="fee-row"><span>Late Fine</span><input id="fine" type="number" placeholder="0" oninput="calc()"></div>
@@ -73,15 +89,15 @@
         <span style="font-weight:600;color:#b91c1c">Balance Dues</span>
         <div class="computed" id="dues_disp" style="color:#b91c1c">0.00</div>
       </div>
-
-      <button class="btn-update" onclick="update()">&#8635; Preview Update Karo</button>
-      <button class="btn-print" onclick="window.print()">&#128438; Print / Download</button>
+ 
+      <button class="btn-update" onclick="update()">🔄 Preview Update Karo</button>
+      <button class="btn-print" onclick="window.print()">🖨️ Print / Download</button>
     </div>
   </div>
-
-  <!-- RIGHT: LIVE PREVIEW -->
-  <div class="panel">
-    <div class="panel-head">&#128196; Live Preview</div>
+ 
+  <!-- RIGHT: PREVIEW -->
+  <div class="panel" id="panel-preview">
+    <div class="panel-head">📄 Live Preview</div>
     <div id="preview">
       <div class="empty-state">
         <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="#9ca3af" stroke-width="1.2">
@@ -91,9 +107,8 @@
       </div>
     </div>
   </div>
-
 </div>
-
+ 
 </body>
 <script src="style.js"></script>
 </html>
